@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/HomePageFragment"
+        android:title="Home"
+        />
+    <item
+        android:id="@+id/SearchPageFragment"
+        android:title="Search"
+         />
+
+    <item
+        android:id="@+id/FavouritesFragment"
+        android:title="Favourites"
+         />
+
+<!--    android:icon="@drawable/ic_profile"-->
+</menu>
