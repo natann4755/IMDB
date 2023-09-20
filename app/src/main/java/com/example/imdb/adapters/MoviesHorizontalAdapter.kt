@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.imdb.databinding.MovieHorizontalItemBinding
-import com.example.imdb.databinding.MovieItemBinding
 import com.example.imdb.models.Movie
 import com.squareup.picasso.Picasso
 
@@ -12,16 +11,13 @@ const val baseUrl = "https://image.tmdb.org/t/p/"
 const val imageHorizontalSizePoster = "w200"
 const val imageVerticalSizePoster = "w500"
 
-class MoviesHorizontalAdapter (
+class MoviesHorizontalAdapter(
     var movieList: List<Movie>?,
     private var openMovieDetailsListener: OpenMovieDetailsListener?
-    ) : RecyclerView.Adapter<MoviesHorizontalAdapter.MovieItemViewHolder>() {
+) : RecyclerView.Adapter<MoviesHorizontalAdapter.MovieItemViewHolder>() {
 
 
-
-    override fun getItemCount(): Int {
-        return movieList?.size ?: 0
-    }
+    override fun getItemCount(): Int { return movieList?.size ?: 0 }
 
     override fun onBindViewHolder(holder: MovieItemViewHolder, position: Int) {
         movieList?.get(position)?.let { movieItem ->
@@ -48,8 +44,8 @@ class MoviesHorizontalAdapter (
 
 
     class MovieItemViewHolder(val binding: MovieHorizontalItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-    }
+        RecyclerView.ViewHolder(binding.root)
+
 }
 
 interface OpenMovieDetailsListener {

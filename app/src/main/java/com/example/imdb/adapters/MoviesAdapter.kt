@@ -8,16 +8,12 @@ import com.example.imdb.models.Movie
 import com.squareup.picasso.Picasso
 
 
-
-class MoviesAdapter (
+class MoviesAdapter(
     var movieList: ArrayList<Movie>?,
     private var openMovieDetailsListener: OpenMovieDetailsListener? = null
-    ) : RecyclerView.Adapter<MoviesAdapter.MovieItemViewHolder>() {
+) : RecyclerView.Adapter<MoviesAdapter.MovieItemViewHolder>() {
 
-
-    override fun getItemCount(): Int {
-        return movieList?.size ?: 0
-    }
+    override fun getItemCount(): Int { return movieList?.size ?: 0 }
 
     override fun onBindViewHolder(holder: MovieItemViewHolder, position: Int) {
         movieList?.get(position)?.let { movieItem ->
@@ -44,6 +40,5 @@ class MoviesAdapter (
 
 
     class MovieItemViewHolder(val binding: MovieItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-    }
+        RecyclerView.ViewHolder(binding.root)
 }

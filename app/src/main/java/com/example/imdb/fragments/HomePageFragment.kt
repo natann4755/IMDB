@@ -20,8 +20,8 @@ class HomePageFragment : Fragment(), OpenMovieDetailsListener {
     private lateinit var binding: FragmentHomePageBinding
     private val viewModel by activityViewModels<MainViewModel>()
 
-    private var popularMoviesAdapter : MoviesHorizontalAdapter? = null
-    private var topRatedMoviesAdapter : MoviesAdapter? = null
+    private var popularMoviesAdapter: MoviesHorizontalAdapter? = null
+    private var topRatedMoviesAdapter: MoviesAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +52,8 @@ class HomePageFragment : Fragment(), OpenMovieDetailsListener {
 
     private fun initAdapters() {
         popularMoviesAdapter = MoviesHorizontalAdapter(viewModel.getPopularMovie().value, this)
-        binding.HPFPopularMoviesRV.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.HPFPopularMoviesRV.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.HPFPopularMoviesRV.adapter = popularMoviesAdapter
 
         topRatedMoviesAdapter = MoviesAdapter(viewModel.getTopRatedMovie().value, this)

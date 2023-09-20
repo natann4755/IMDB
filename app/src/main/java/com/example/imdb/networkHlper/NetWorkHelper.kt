@@ -8,45 +8,48 @@ import java.util.HashMap
 
 object NetWorkHelper {
 
-    const val APPLICATION_JSON: String = "application/json"
-    const val ACCEPT_HEADER = "accept"
-    const val AUTHORIZATION_HEADER = "Authorization"
-    const val API_TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NjZiMDhlMGYwZjVkOWQ5YmE2MDg5YTY3NTM3NDMzYyIsInN1YiI6IjVlM2JmOGZjMGMyNzEwMDAxYTc4MTY5OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.YGsLu0H3tAkAh8ltiT4EN1GMlWTZwGf4zOusHc_AAlw"
+    private const val APPLICATION_JSON: String = "application/json"
+    private const val ACCEPT_HEADER = "accept"
+    private const val AUTHORIZATION_HEADER = "Authorization"
+    private const val API_TOKEN =
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NjZiMDhlMGYwZjVkOWQ5YmE2MDg5YTY3NTM3NDMzYyIsInN1YiI6IjVlM2JmOGZjMGMyNzEwMDAxYTc4MTY5OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.YGsLu0H3tAkAh8ltiT4EN1GMlWTZwGf4zOusHc_AAlw"
 
     fun getPopularMovie(responseCallback: ApiResponseCallback<Results>) {
-        RetrofitClient.createRetrofit().getPopularMovies(getMapHeaders()).enqueue(object : Callback<Results> {
-            override fun onResponse(call: Call<Results>, response: Response<Results>) {
-                if (response.isSuccessful && response.body() != null) {
-                    responseCallback.onSuccess(response.body()!!)
-                } else {
+        RetrofitClient.createRetrofit().getPopularMovies(getMapHeaders())
+            .enqueue(object : Callback<Results> {
+                override fun onResponse(call: Call<Results>, response: Response<Results>) {
+                    if (response.isSuccessful && response.body() != null) {
+                        responseCallback.onSuccess(response.body()!!)
+                    } else {
+                        responseCallback.onFailure("print ")
+                    }
+                }
+
+                override fun onFailure(call: Call<Results>, t: Throwable) {
                     responseCallback.onFailure("print ")
                 }
-            }
-
-            override fun onFailure(call: Call<Results>, t: Throwable) {
-                responseCallback.onFailure("print ")
-            }
-        })
+            })
     }
 
     fun getTopRatedMovie(responseCallback: ApiResponseCallback<Results>) {
-        RetrofitClient.createRetrofit().getTopRatedMovie(getMapHeaders()).enqueue(object : Callback<Results> {
-            override fun onResponse(call: Call<Results>, response: Response<Results>) {
-                if (response.isSuccessful && response.body() != null) {
-                    responseCallback.onSuccess(response.body()!!)
-                } else {
+        RetrofitClient.createRetrofit().getTopRatedMovie(getMapHeaders())
+            .enqueue(object : Callback<Results> {
+                override fun onResponse(call: Call<Results>, response: Response<Results>) {
+                    if (response.isSuccessful && response.body() != null) {
+                        responseCallback.onSuccess(response.body()!!)
+                    } else {
+                        responseCallback.onFailure("print ")
+                    }
+                }
+
+                override fun onFailure(call: Call<Results>, t: Throwable) {
                     responseCallback.onFailure("print ")
                 }
-            }
-
-            override fun onFailure(call: Call<Results>, t: Throwable) {
-                responseCallback.onFailure("print ")
-            }
-        })
+            })
     }
 
-    suspend fun searchMovie(query: String): Results{
-       return RetrofitClient.createRetrofit().searchMovie(getMapHeaders(), query)
+    suspend fun searchMovie(query: String): Results {
+        return RetrofitClient.createRetrofit().searchMovie(getMapHeaders(), query)
     }
 
 

@@ -7,17 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.imdb.R
 import com.example.imdb.adapters.MoviesHorizontalAdapter
 import com.example.imdb.adapters.OpenMovieDetailsListener
-import com.example.imdb.databinding.FragmentHomePageBinding
 import com.example.imdb.databinding.FragmentSearchPageBinding
 import com.example.imdb.models.Movie
-import com.example.imdb.viewModel.MainViewModel
-import com.example.imdb.viewModel.Reposetory
+import com.example.imdb.viewModel.Repository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,7 +21,7 @@ import kotlinx.coroutines.withContext
 
 class SearchPageFragment : Fragment(), OpenMovieDetailsListener {
     private lateinit var binding: FragmentSearchPageBinding
-    private var searchMoviesAdapter : MoviesHorizontalAdapter? = null
+    private var searchMoviesAdapter: MoviesHorizontalAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,16 +42,16 @@ class SearchPageFragment : Fragment(), OpenMovieDetailsListener {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                 if (s.toString().isNotEmpty()){
-                     var searchResults : ArrayList<Movie>? = null
-                     CoroutineScope(Dispatchers.IO).launch{
-                         searchResults = Reposetory.searchMovie(s.toString())
-                         withContext(Dispatchers.Main){
-                             searchMoviesAdapter?.movieList = searchResults
-                             searchMoviesAdapter?.notifyDataSetChanged()
-                         }
-                     }
-                 }
+                if (s.toString().isNotEmpty()) {
+                    var searchResults: ArrayList<Movie>?
+                    CoroutineScope(Dispatchers.IO).launch {
+                        searchResults = Repository.searchMovie(s.toString())
+                        withContext(Dispatchers.Main) {
+                            searchMoviesAdapter?.movieList = searchResults
+                            searchMoviesAdapter?.notifyDataSetChanged()
+                        }
+                    }
+                }
             }
 
             override fun afterTextChanged(s: Editable?) {}

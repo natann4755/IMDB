@@ -1,7 +1,6 @@
 package com.example.imdb.fragments
 
 import android.app.Dialog
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -52,18 +51,10 @@ class MovieDetailsPage(var movie :Movie?) : DialogFragment() {
             .into(binding.PMDMovieImageIV)
 
         binding.PMDAddToFavoritesBU.setOnClickListener {
-            movie?.let { it ->
+            movie?.let { movie ->
                 viewModel.insertFavouriteMovie(
-                    it, binding.root.context)
+                    movie, binding.root.context)
             }
-//                    (
-//                movieId = movie?.id,
-//                overview = movie?.overview,
-//                popularity = movie?.popularity,
-//                posterPath = movie?.posterPath,
-//                title = movie?.title,
-//            ),
-
         }
     }
 }

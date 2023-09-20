@@ -26,11 +26,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initData() {
-        viewModel.initData()
+        viewModel.initData(baseContext)
     }
 
     private fun initBottomController() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.main_nav_host_fragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.main_nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         binding.bottomNavView.setupWithNavController(navController)
 
